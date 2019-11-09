@@ -2,7 +2,7 @@
 
 A spring boot based Jrebel License Server. 
 
-docker image available [here](http://hub.docker.com/imjcker/jrebel)
+docker image available [here](https://hub.docker.com/repository/docker/imjcker/jrebel)
 
 ## Usage
 
