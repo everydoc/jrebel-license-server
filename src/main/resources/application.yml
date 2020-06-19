@@ -1,2 +1,11 @@
 server:
   port: 9090
+
+spring:
+  freemarker:
+    enabled: true
+    prefix: /
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+  mvc:
+    static-path-pattern: /**

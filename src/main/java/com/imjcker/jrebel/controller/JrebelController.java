@@ -1,10 +1,12 @@
 package com.imjcker.jrebel.controller;
 
 import com.imjcker.jrebel.JrebelUtil.JrebelSign;
+import com.imjcker.jrebel.util.HttpClientUtils;
 import com.imjcker.jrebel.util.rsasign;
 import net.sf.json.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,20 +16,18 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-@RestController
+@Controller
 public class JrebelController {
     @RequestMapping("/")
-    public void indexHandler(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String indexHandler(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws IOException {
         response.setContentType("text/html; charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
-
         int port = request.getServerPort();
-        String html = "<h1>Hello,This is a Jrebel & JetBrains License Server!</h1>";
-        html += "<p>License Server started at http://localhost:" + port;
-        html += "<p>JetBrains Activation address was: <span style='color:red'>http://localhost:" + port + "/";
-        html += "<p>JRebel 7.1 and earlier version Activation address was: <span style='color:red'>http://localhost:" + port + "/{tokenname}</span>, with any email.";
-        html += "<p>JRebel 2018.1 and later version Activation address was: http://localhost:" + port + "/{guid}(eg:<span style='color:red'>http://localhost:" + port + "/" + UUID.randomUUID().toString() + "</span>), with any email.";
-        response.getWriter().println(html);
+        String host = HttpClientUtils.get("http://ip.sb");
+        String URL = host + ":" + port;
+        model.addAttribute("url", URL);
+        model.addAttribute("uuid", UUID.randomUUID().toString());
+        return "index";
     }
 
     @RequestMapping("/jrebel/validate-connection")
