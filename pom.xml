@@ -93,7 +93,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.2.0</version>
                 <configuration>
-                    <imageName>imjcker/jrebel</imageName>
+                    <imageName>imjcker/jrebel-license-server</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
