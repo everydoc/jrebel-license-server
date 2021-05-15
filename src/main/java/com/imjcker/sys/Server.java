@@ -102,7 +102,7 @@ public class Server {
 
         setJvmInfo();
 
-        setSysFiles(si.getOperatingSystem());
+//        setSysFiles(si.getOperatingSystem());
 
         return this;
     }

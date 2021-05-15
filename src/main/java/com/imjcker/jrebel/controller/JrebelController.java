@@ -1,8 +1,10 @@
 package com.imjcker.jrebel.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.imjcker.jrebel.JrebelUtil.JrebelSign;
 import com.imjcker.jrebel.util.HttpClientUtils;
 import com.imjcker.jrebel.util.rsasign;
+import com.imjcker.sys.Server;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,6 +29,16 @@ public class JrebelController {
         String URL = host + ":" + port;
         model.addAttribute("url", URL);
         model.addAttribute("uuid", UUID.randomUUID().toString());
+
+        try {
+            Server server = new Server().copyTo();
+            ObjectMapper objectMapper = new ObjectMapper();
+            String status = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(server);
+            model.addAttribute("status", status);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "index";
     }
 
