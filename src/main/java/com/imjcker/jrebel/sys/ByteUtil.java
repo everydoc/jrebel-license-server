@@ -1,4 +1,4 @@
-package com.imjcker.jrebel.JrebelUtil;
+package com.imjcker.jrebel.sys;
 import org.apache.commons.codec.binary.Base64;
 
 import java.nio.charset.StandardCharsets;

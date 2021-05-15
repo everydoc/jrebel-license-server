@@ -1,4 +1,4 @@
-package com.imjcker.sys;
+package com.imjcker.jrebel.sys;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -18,9 +18,9 @@ public class SysViewServlet extends HttpServlet {
         log.info("You are trying to get system info with sys-spring-boot-starter, thank you for choosing our product, please visit http://imjcker.com for more useful components.");
         log.info("request url: " + req.getRequestURL());
         try {
-            Server server = new Server().copyTo();
+            // 组装信息
             ObjectMapper objectMapper = new ObjectMapper();
-            resp.getWriter().print(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(server));
+            resp.getWriter().print(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString("server"));
         } catch (Exception e) {
             log.error("Error occurred: {}", e.getMessage());
         }

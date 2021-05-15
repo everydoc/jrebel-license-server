@@ -9,21 +9,5 @@ spring:
     template-loader-path: classpath:/templates/
   mvc:
     static-path-pattern: /**
+    oshi-servlet: /sys/status
 
-imjcker:
-  oshi:
-    sys-view-servlet:
-      enabled: true
-      url-pattern: /sys/status
-  swagger:
-    enabled: true
-    base-package: com.imjcker
-    api-info:
-      title: aaa
-      description: bbb
-      terms-of-service-url: http://imjcker.com
-      version: 1.0
-      contact:
-        name: imjcker
-        url: http://imjcker.com
-        email: helloalanturing@icloud.com

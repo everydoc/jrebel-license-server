@@ -1,20 +1,30 @@
-package com.imjcker;
+package com.imjcker.jrebel;
 
+import com.imjcker.jrebel.sys.SysViewServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 
 import java.util.UUID;
 
-//@Slf4j
 @SpringBootApplication
 public class JrebelApplication implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(JrebelApplication.class);
     @Value("${server.port}")
     private String port;
+
+    @Value("${spring.mvc.oshi-servlet")
+    private String path;
+
+    @Bean
+    public ServletRegistrationBean servletRegistrationBean() {
+        return new ServletRegistrationBean(new SysViewServlet(), path);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(JrebelApplication.class, args);
