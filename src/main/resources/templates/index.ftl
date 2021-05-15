@@ -15,17 +15,10 @@
         <p>JRebel 2018.1 and later version Activation address was: <span style='color:red'>${url}/${uuid}</span></p>
         <a class="btn btn-primary btn-lg" href="https://github.com/imjcker/jrebel-license-server" role="button">Fork me on GitHub</a>
 
-        <p id="json-render">${status}</p>
     </div>
 </div>
 <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
 <script src="/webjars/popper.js/1.16.0/umd/popper.min.js" ></script>
 <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
-<script>
-    $(function (){
-        $('#json-renderer').jsonViewer(${status}, {withQuotes: true});
-    });
-
-</script>
 </body>
 </html>
