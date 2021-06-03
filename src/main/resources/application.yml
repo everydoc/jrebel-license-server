@@ -9,5 +9,4 @@ spring:
     template-loader-path: classpath:/templates/
   mvc:
     static-path-pattern: /**
-    oshi-servlet: /sys/status
 
