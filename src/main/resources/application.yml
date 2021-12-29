@@ -2,6 +2,7 @@ server:
   port: 9090
 
 spring:
+  application: imjcker-tools
   freemarker:
     enabled: true
     prefix: /
@@ -9,4 +10,45 @@ spring:
     template-loader-path: classpath:/templates/
   mvc:
     static-path-pattern: /**
+  main:
+    allow-bean-definition-overriding: true
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: imjcker@qq.com
+    password: adnlzemfglhcbcgf
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+          ssl:
+            enable: true
 
+logging:
+  level:
+    org.springframework.web: INFO
+    com.imjcker.ddns: DEBUG
+  file:
+    name: ${user.dir}/logs/ddns.log
+    max-history: 3
+    max-size: 10MB
+
+dns:
+  find-ip-url: http://ip.sb
+  cron: 0 0/1 * * * ?
+  send-error-log: false
+  mail:
+    subject: NDS变更通知
+    user: 570577029@qq.com
+  ali:
+    enable: true
+    region: cn-hangzhou
+    access-key: LTAI5tHwrBGuZngFurprE3xw
+    access-secret: Bp7BIWHyNUnGAzfkTXvItA0TsfIvj5
+    record:
+      domain-name: imjcker.com
+      type: A
+      sub-domain: imjcker.com

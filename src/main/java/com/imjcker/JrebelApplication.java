@@ -1,4 +1,4 @@
-package com.imjcker.jrebel;
+package com.imjcker;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.UUID;
 
+@EnableScheduling
 @SpringBootApplication
 public class JrebelApplication implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(JrebelApplication.class);
