@@ -1,5 +1,4 @@
 FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ADD target/jrebel-license-server-1.0.0.jar app.jar
-ENV JAVA_OPTS=""
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ARG JAR_FILE
+ADD target/${JAR_FILE} /app.jar
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "-Duser.timezone=GMT+8", "/app.jar"]

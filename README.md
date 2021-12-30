@@ -22,12 +22,10 @@ nohup java -jar jrebel-license-server-1.0.0.jar >/dev/null 2>&1 &
 
 # for docker users
 
-sudo docker run -d --name jrebel-license-server -p 9090:9090 --restart always imjcker/jrebel:latest
+sudo docker run -d --name jrebel-license-server -p 9090:9090 --restart always imjcker/jrebel-license-server:latest
 
 ```
 
 [license]: https://www.apache.org/licenses/LICENSE-2.0
 
-## 联系作者
-![微信公众号](/docs/java-pro.jpg)
 
