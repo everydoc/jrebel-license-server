@@ -19,6 +19,7 @@
         <spring-boot.version>2.7.9</spring-boot.version>
         <spring-cloud.version>2021.0.6</spring-cloud.version>
         <docker.image.registryUrl>192.168.0.115:5000</docker.image.registryUrl>
+        <docker.remote.host>${env.DOCKER_REMOTE_HOST}</docker.remote.host>
     </properties>
 
     <dependencies>
@@ -114,7 +115,7 @@
                 </executions>
                 <configuration>
                     <!--配置docker和仓库-->
-                    <dockerHost>http://m1.imjcker.com:3375</dockerHost>
+                    <dockerHost>${docker.remote.host}</dockerHost>
                     <registryUrl>${docker.image.registryUrl}</registryUrl>
 
                     <!--配置镜像-->
