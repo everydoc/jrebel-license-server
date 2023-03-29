@@ -11,15 +11,29 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
 logging:
   level:
     org.springframework.web: INFO
     com.imjcker.jrebel: DEBUG
   file:
     name: ${user.home}/logs/jrebel.log
-    max-history: 3
-    max-size: 10MB
+  logback:
+    rollingpolicy:
+      max-history: 7
+      max-file-size: 10MB
 
 server:
   port: 9090
+
+jrebel:
+  url-cn: https://jrebel.imjcker.com:1314
+  url-global: https://jrebel.hk.imjcker.com
+  social:
+    - name: CSDN
+      url: https://blog.csdn.net/u012137018
+    - name: 博客园
+      url: https://www.cnblogs.com/tfsc/
+    - name: GitHub
+      url: https://github.com/everydoc
+    - name: 个人博客
+      url: https://blog.hk.imjcker.com

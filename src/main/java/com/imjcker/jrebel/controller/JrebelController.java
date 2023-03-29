@@ -1,9 +1,10 @@
 package com.imjcker.jrebel.controller;
 
-import com.imjcker.jrebel.sys.HttpClientUtils;
+import com.imjcker.jrebel.config.JrebelConfigurationProperties;
 import com.imjcker.jrebel.sys.JrebelSign;
 import com.imjcker.jrebel.sys.rsasign;
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +19,21 @@ import java.util.UUID;
 
 @Controller
 public class JrebelController {
+    private final JrebelConfigurationProperties jrebel;
+
+    @Autowired
+    public JrebelController(JrebelConfigurationProperties jrebel) {
+        this.jrebel = jrebel;
+    }
+
     @RequestMapping("/")
     public String indexHandler(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws IOException {
         response.setContentType("text/html; charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
         int port = request.getServerPort();
-        String host = HttpClientUtils.get("http://ip.sb");
-        String URL = host + ":" + port;
-        model.addAttribute("url", URL);
+        model.addAttribute("port", Integer.toString(port));
         model.addAttribute("uuid", UUID.randomUUID().toString());
+        model.addAttribute("jrebel", jrebel);
 
         return "index";
     }

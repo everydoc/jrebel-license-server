@@ -5,22 +5,20 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.5.RELEASE</version>
+        <version>2.7.9</version>
         <relativePath/>
     </parent>
     <groupId>com.imjcker</groupId>
     <artifactId>jrebel-license-server</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <name>jrebel-license-server</name>
     <description>jrebel</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-        <docker.image.prefix>imjcker</docker.image.prefix>
+        <spring-boot.version>2.7.9</spring-boot.version>
+        <spring-cloud.version>2021.0.6</spring-cloud.version>
+        <docker.image.registryUrl>192.168.0.115:5000</docker.image.registryUrl>
     </properties>
 
     <dependencies>
@@ -32,6 +30,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -78,12 +88,6 @@
             <artifactId>bootstrap</artifactId>
             <version>4.5.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.webjars/webjars-locator -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>webjars-locator</artifactId>
-            <version>0.40</version>
-        </dependency>
 
     </dependencies>
 
@@ -95,11 +99,13 @@
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.13</version>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.2.2</version>
+
                 <executions>
                     <execution>
-                        <id>default</id>
+                        <id>build-image</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>build</goal>
                             <goal>push</goal>
@@ -107,11 +113,33 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
-                    <tag>${project.version}</tag>
-                    <buildArgs>
-                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
+                    <!--配置docker和仓库-->
+                    <dockerHost>http://m1.imjcker.com:3375</dockerHost>
+                    <registryUrl>${docker.image.registryUrl}</registryUrl>
+
+                    <!--配置镜像-->
+                    <imageName>${docker.image.registryUrl}/${project.groupId}/${project.artifactId}:latest</imageName>
+                    <!--配置附加标签，上面的imageName必须自带一个标签，下面配置的是附加标签，附加标签可以不配置-->
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+
+                    <!--配置Dockerfile-->
+                    <!--FROM openjdk:11-->
+                    <baseImage>openjdk:8-jdk-alpine</baseImage>
+                    <workdir>/root/</workdir>
+                    <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "-Duser.timezone=GMT+8", "${project.build.finalName}.jar"]</entryPoint>
+                    <!-- 添加资源文件 -->
+                    <resources>
+                        <resource>
+                            <!--jar地址目录-->
+                            <directory>${project.build.directory}</directory>
+                            <!--jar文件-->
+                            <include>${project.build.finalName}.jar</include>
+                            <!--容器内目标目录-->
+                            <targetPath>/root/</targetPath>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>

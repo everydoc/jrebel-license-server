@@ -11,16 +11,16 @@ docker镜像地址[点这里](https://hub.docker.com/repository/docker/imjcker/j
 关注公众号【天府书虫】，发送关键字"jrebel"获取激活地址。  
 
 
-![usage](/qrcode.png)
+![usage](/index.png)
 ## Usage (自建教程)
 
 
 ```shell script
-java -jar jrebel-license-server-1.0.0.jar 
+java -jar jrebel-license-server-2.0.0.jar 
 
 # run daemond
 
-nohup java -jar jrebel-license-server-1.0.0.jar >/dev/null 2>&1 &
+nohup java -jar jrebel-license-server-2.0.0.jar >/dev/null 2>&1 &
 
 # for docker users
 

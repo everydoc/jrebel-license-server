@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "name": "jrebel",
+      "type": "com.imjcker.jrebel.config.JrebelConfigurationProperties",
+      "sourceType": "com.imjcker.jrebel.config.JrebelConfigurationProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jrebel.social",
+      "type": "java.util.List<com.imjcker.jrebel.config.JrebelConfigurationProperties$Social>",
+      "description": "social networks url list",
+      "sourceType": "com.imjcker.jrebel.config.JrebelConfigurationProperties"
+    },
+    {
+      "name": "jrebel.url-cn",
+      "type": "java.lang.String",
+      "description": "jrebel active addr for China",
+      "sourceType": "com.imjcker.jrebel.config.JrebelConfigurationProperties"
+    },
+    {
+      "name": "jrebel.url-global",
+      "type": "java.lang.String",
+      "description": "jrebel active addr for global",
+      "sourceType": "com.imjcker.jrebel.config.JrebelConfigurationProperties"
+    },
+    {
+      "name": "jrebel.ip-fetch-url",
+      "type": "java.lang.String",
+      "description": "获取jrebel部署服务器的公网IP地址",
+      "sourceType": "com.imjcker.jrebel.config.JrebelConfigurationProperties",
+      "deprecated": true,
+      "deprecation": {}
+    }
+  ],
+  "hints": []
+}
