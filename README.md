@@ -8,10 +8,6 @@ docker镜像地址[点这里](https://hub.docker.com/repository/docker/imjcker/j
 
 > docker image available [here](https://hub.docker.com/repository/docker/imjcker/jrebel-license-server)
 
-关注公众号【天府书虫】，发送关键字"jrebel"获取激活地址。  
-
-
-![usage](/index.png)
 ## Usage (自建教程)
 
 
